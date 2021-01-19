@@ -1,0 +1,30 @@
+#! /bin/bash
+NAME=""
+GROUP=""
+STICKER=""
+TEXT=""
+REPEAT=1
+while getopts "gsn:t:r:" arg; do
+	case $arg in
+		n)
+			NAME="${OPTARG}"
+			;;
+		g)
+			GROUP="group"			
+;;
+		s)
+			STICKER="Sticker"
+			
+		;;
+		t)
+			TEXT="${OPTARG}"			
+;;	
+		r)
+			REPEAT="${OPTARG}"
+			
+;;
+	*)	;;
+	esac
+done
+
+node ../src/whatsappBot.js "$NAME" "$GROUP" "$STICKER" "$TEXT" $REPEAT

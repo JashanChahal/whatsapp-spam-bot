@@ -4,7 +4,7 @@ const SMILEY = "#main > footer > div._3SvgF._1mHgA.copyable-area > div._3qpzV.rN
 const STICKER_ICON = " div._3qpzV.rN1v9 > div.nw8RZ._1isZ2._3c42S > button._37evB._16P6V._3x5p4._3guyl > span";
 
 async function sendText(messageArr, destination) {
-    { inputField, page } = destination;
+    const { inputField, page } = destination;
     if (!!messageArr === false || !!inputField === false) {
         return;
     }
@@ -57,14 +57,19 @@ async function whatsappBot(message) {
 
 
 }
+
 let recepient = process.argv[2];
 let isGroup = !!process.argv[3] ? (process.argv[3].toLowerCase() == "group") : false;
+let stickers = !!process.argv[4] ? (process.argv[4].toLowerCase() === "sticker") : false;
+let text = !!process.argv[5] ? [process.argv[5]] : [];
+let repeat = !!process.argv[6] ? parseInt(process.argv[6]) : 1;
+
 const message = {
     recepient,
     isGroup,
-    stickers: false,
-    text: ["hello", "Hi", "whatsup", "how are you"],
-    repeat: 200
+    stickers,
+    text,
+    repeat
 }
 try {
     whatsappBot(message);
